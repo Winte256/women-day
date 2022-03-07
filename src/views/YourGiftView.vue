@@ -1,7 +1,9 @@
 <template>
   <div class="yourGift">
     <the-title class="home__title"> Ваш подарок </the-title>
-    <div v-if="awaitGift">loading...</div>
+    <div v-if="awaitGift" class="loader">
+      <CommonSpinner />
+    </div>
     <div class="imageBox" v-else-if="+giftN > 0">
       <img
         class="image"
@@ -45,6 +47,8 @@
 import TheTitle from '@/components/TheTitle.vue';
 import CommonButton from '@/components/CommonButton.vue';
 import ContactsBox from '@/components/ContactsBox.vue';
+import CommonSpinner from '@/components/CommonSpinner.vue';
+
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { setAwaitNFTCookie, getAwaitNFTCookie, checkGift } from '../utils/metamask';
@@ -56,6 +60,8 @@ export default {
     TheTitle,
     CommonButton,
     ContactsBox,
+    CommonSpinner,
+
   },
 
   setup() {
@@ -179,5 +185,9 @@ export default {
   &:not(:last-of-type) {
     margin-bottom: 10px;
   }
+}
+
+.loader {
+  margin-bottom: 15px;
 }
 </style>
