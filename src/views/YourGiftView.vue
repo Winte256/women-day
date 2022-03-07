@@ -12,9 +12,6 @@
     </div>
     <div class="yourGift__buttonsBox buttonsBox">
       <common-button :hasBackground="true">Добавить в Metamask</common-button>
-      <common-button :isBordered="true" @click="howToAttach"
-        >Как привязать кошелек</common-button
-      >
     </div>
     <contacts-box />
   </div>
