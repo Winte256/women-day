@@ -9,9 +9,13 @@
         alt="nft flower"
       />
     </div>
+
     <div class="yourGift__buttonsBox buttonsBox">
-      <common-button :hasBackground="true">Добавить в Metamask</common-button>
+      <common-button :hasBackground="true" v-if="buttonIsShown"
+        >Добавить в Metamask</common-button
+      >
     </div>
+
     <ol class="instructions">
       <li class="instructionsItem">Откройте мобильное приложение Метамаск</li>
       <li class="instructionsItem">
@@ -27,7 +31,7 @@
       <li class="instructionsItem">
         Укажите адрес 0x26A0884383b5FFF7f0A4911a70CD1e07F3C3A994
       </li>
-      <li class="instructionsItem">Укажите Идентификатор ХХХХХ</li>
+      <li class="instructionsItem">Укажите Идентификатор {{ giftN }}</li>
       <li class="instructionsItem">Нажмите «Добавить»</li>
       <li class="instructionsItem">Дождитесь загрузки изборажения</li>
     </ol>
@@ -43,6 +47,7 @@ import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import ContactsBox from '@/components/ContactsBox.vue';
 import { setAwaitNFTCookie, getAwaitNFTCookie, checkGift } from '../utils/metamask';
+// import { contractAddress } from '../utils/constants';
 
 export default {
   name: 'HomeView',
@@ -53,6 +58,8 @@ export default {
   },
 
   setup() {
+    const buttonIsShown = ref(true);
+
     const router = useRouter();
 
     const awaitGift = ref(true);
@@ -103,6 +110,7 @@ export default {
     return {
       awaitGift,
       giftN,
+      buttonIsShown,
     };
   },
 };
@@ -152,10 +160,17 @@ export default {
 .instructions {
   display: block;
   width: 100%;
-  display: block;
-  width: 100%;
   max-width: 320px;
-  margin: 0;
-  padding: 0;
+  margin: 0 0 88px 0;
+  padding: 0 0 0 20px;
+}
+
+.instructionsItem {
+  getFontText();
+  word-break: break-word;
+
+  &:not(:last-of-type) {
+    margin-bottom: 10px;
+  }
 }
 </style>
