@@ -11,12 +11,15 @@
     </div>
 
     <div class="yourGift__buttonsBox buttonsBox">
-      <common-button :hasBackground="true" v-if="buttonIsShown"
+      <common-button
+        :hasBackground="true"
+        v-if="buttonIsShown"
+        @click="hideButton"
         >Добавить в Metamask</common-button
       >
     </div>
 
-    <ol class="instructions">
+    <ol class="instructions" v-if="!buttonIsShown">
       <li class="instructionsItem">Откройте мобильное приложение Метамаск</li>
       <li class="instructionsItem">
         Убедитесь, что вы находетесь в кошельке с тем адресом, на который
@@ -64,6 +67,10 @@ export default {
 
     const giftN = ref('0');
 
+    const hideButton = () => {
+      buttonIsShown.value = false;
+    };
+
     const checkAwait = async () => {
       const awaitStatus = getAwaitNFTCookie();
 
@@ -110,6 +117,7 @@ export default {
       giftN,
       buttonIsShown,
       contractAddress,
+      hideButton,
     };
   },
 };
