@@ -1,17 +1,52 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div class="base-wrapper">
+    <div class="base-container">
+      <the-header/>
+      <router-view />
+    </div>
+  </div>
 </template>
 
+<script>
+import TheHeader from '@/components/TheHeader.vue';
+
+export default {
+  name: 'App',
+  components: {
+    TheHeader,
+  },
+};
+</script>
+
 <style lang="stylus">
-#app
-  font-family Avenir, Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-  margin-top 60px
+@import '@/assets/styles/normalize.css';
+@import '@/assets/styles/main.css';
+
+#app {
+}
+
+.base-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  background-image: $colorBg;
+}
+
+.base-container {
+  padding: 0 8px;
+  margin: auto;
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+
+  +mediaTablet() {
+    max-width: 750px;
+    padding: 0 15px;
+  }
+
+  +mediaDesktop() {
+    max-width: 1440px;
+    padding: 0 64px;
+  }
+}
 </style>
