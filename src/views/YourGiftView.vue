@@ -11,6 +11,7 @@
       <common-button :hasBackground="true">Добавить в Metamask</common-button>
       <common-button :isBordered="true">Как привязать кошелек</common-button>
     </div>
+    <contacts-box />
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import TheTitle from '@/components/TheTitle.vue';
 import CommonButton from '@/components/CommonButton.vue';
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import ContactsBox from '@/components/ContactsBox.vue';
 import { setAwaitNFTCookie, getAwaitNFTCookie, checkGift } from '../utils/metamask';
 
 export default {
@@ -26,6 +28,7 @@ export default {
   components: {
     TheTitle,
     CommonButton,
+    ContactsBox,
   },
 
   setup() {

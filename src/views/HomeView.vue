@@ -155,12 +155,13 @@ export default {
   getFontText();
   text-align: center;
 
-  +mediaPhone() {
+  +mediaPhoneS() {
     min-width: $width.phoneS.buttonText;
   }
 }
 
 .policies {
+  margin-bottom: 56px;
   text-align: center;
   getFontPolicies();
 }

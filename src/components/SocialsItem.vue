@@ -25,7 +25,9 @@ export default {
   height 32px
 }
 
-.socialsItemImg {
-
+.socialsItemLink {
+  &:hover {
+    opacity: 0.6
+  }
 }
 </style>

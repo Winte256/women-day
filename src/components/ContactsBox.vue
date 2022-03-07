@@ -1,6 +1,12 @@
 <template>
   <div class="contactsBox">
-    <contact-item class="contactsBox__item" v-for="contact in contacts" :key="contact.title" :links="contact.links">{{contact.title}}</contact-item>
+    <contact-item
+      class="contactsBox__item"
+      v-for="contact in contacts"
+      :key="contact.title"
+      :links="contact.links"
+      >{{ contact.title }}</contact-item
+    >
   </div>
 </template>
 
@@ -49,19 +55,36 @@ export default {
 
 <style lang="stylus" scoped>
 .contactsBox {
-  width 100%
+  width: 100%;
   max-width: $width.phoneXs.buttonText;
 
-  +mediaPhone() {
-  min-width: $width.phoneS.buttonText;
+  // border-top: 1px solid $colorPurple;
+  // border-radius: 12px 12px 0px 0px;
+  +mediaPhoneS() {
+    min-width: $width.phoneS.buttonText;
   }
 
   &__item {
-      margin-top 32px
-      margin-bottom 16px
+    position: relative;
+    padding-top: 32px;
+    padding-bottom: 16px;
+
+    &::before {
+      position: absolute;
+      content: '';
+      top: 16px;
+      width: 100%;
+      height: 1px;
+      background-color: $colorPurple;
+    }
+
     &:nth-of-type(2) {
-      margin-top 16px
-      margin-bottom 37px
+      padding-top: 16px;
+      padding-bottom: 37px;
+
+      &::before {
+        top: 0;
+      }
     }
   }
 }
