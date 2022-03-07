@@ -35,9 +35,14 @@ export const getAcc = async () => {
     return undefined;
   }
 
-  const accounts = await provider.request({ method: 'eth_requestAccounts' });
+  try {
+    const accounts = await provider.request({ method: 'eth_requestAccounts' });
 
-  return accounts[0];
+    return accounts[0];
+  } catch (error) {
+    toast.error('Что то пошло не так при попытке получить адрес');
+    return null;
+  }
 };
 
 export const sendGift = async () => {
