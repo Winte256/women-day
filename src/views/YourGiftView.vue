@@ -28,9 +28,7 @@
       <li class="instructionsItem">
         Прокрутите экран вниз и нажмите «ДОБАВИТЬ невзаимозаменяемые токены»
       </li>
-      <li class="instructionsItem">
-        Укажите адрес 0x26A0884383b5FFF7f0A4911a70CD1e07F3C3A994
-      </li>
+      <li class="instructionsItem">Укажите адрес {{ contractAddress }}</li>
       <li class="instructionsItem">Укажите Идентификатор {{ giftN }}</li>
       <li class="instructionsItem">Нажмите «Добавить»</li>
       <li class="instructionsItem">Дождитесь загрузки изборажения</li>
@@ -43,11 +41,11 @@
 <script>
 import TheTitle from '@/components/TheTitle.vue';
 import CommonButton from '@/components/CommonButton.vue';
+import ContactsBox from '@/components/ContactsBox.vue';
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import ContactsBox from '@/components/ContactsBox.vue';
 import { setAwaitNFTCookie, getAwaitNFTCookie, checkGift } from '../utils/metamask';
-// import { contractAddress } from '../utils/constants';
+import { contractAddress } from '../utils/constants';
 
 export default {
   name: 'HomeView',
@@ -111,6 +109,7 @@ export default {
       awaitGift,
       giftN,
       buttonIsShown,
+      contractAddress,
     };
   },
 };
