@@ -4,15 +4,40 @@
 
     <the-title class="home__title"> Ваш подарок </the-title>
     <div class="imageBox">
-      <img
+      <!-- <img
         class="image"
         :src="`https://oton.org/nft/drop_8_march/gift${giftN}.gif?123`"
+        alt="nft flower"
+      /> -->
+      <img
+        class="image"
+        :src="`https://oton.org/nft/drop_8_march/gift1.gif?123`"
         alt="nft flower"
       />
     </div>
     <div class="yourGift__buttonsBox buttonsBox">
       <common-button :hasBackground="true">Добавить в Metamask</common-button>
     </div>
+    <ol class="instructions">
+      <li class="instructionsItem">Откройте мобильное приложение Метамаск</li>
+      <li class="instructionsItem">
+        Убедитесь, что вы находетесь в кошельке с тем адресом, на который
+        получали NFT
+      </li>
+      <li class="instructionsItem">
+        Перейдите на вкладку «Невзаимозаменяемые токены»
+      </li>
+      <li class="instructionsItem">
+        Прокрутите экран вниз и нажмите «ДОБАВИТЬ невзаимозаменяемые токены»
+      </li>
+      <li class="instructionsItem">
+        Укажите адрес 0x26A0884383b5FFF7f0A4911a70CD1e07F3C3A994
+      </li>
+      <li class="instructionsItem">Укажите Идентификатор ХХХХХ</li>
+      <li class="instructionsItem">Нажмите «Добавить»</li>
+      <li class="instructionsItem">Дождитесь загрузки изборажения</li>
+    </ol>
+
     <contacts-box />
   </div>
 </template>
@@ -105,6 +130,8 @@ export default {
 }
 
 .imageBox {
+  display: flex;
+  align-items: center;
   margin-bottom: 32px;
   max-width: $width.phoneXs.buttonText;
   height: 420px;
@@ -120,7 +147,7 @@ export default {
 .image {
   display: block;
   width: 100%;
-  height: 100%;
+  max-width: 320px;
 }
 
 .buttonsBox {
@@ -128,8 +155,13 @@ export default {
   grid-row-gap: 16px;
 }
 
-.giftImg {
-  max-width: 320px;
+.instructions {
+  display: block;
   width: 100%;
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 0;
+  padding: 0;
 }
 </style>
