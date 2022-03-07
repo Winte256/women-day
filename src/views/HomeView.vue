@@ -1,18 +1,27 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <common-button :hasBackground="true">Получить NFT </common-button>
+    <common-button :hasBackground="true">Добавить в Metamask</common-button>
+    <common-button :isBordered="true">Описание кошелька NFT</common-button>
+    <common-button :isBordered="true">Как привязать кошелек</common-button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import CommonButton from '@/components/CommonButton.vue';
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld,
+    CommonButton,
   },
 };
 </script>
+
+<style lang="stylus">
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>
