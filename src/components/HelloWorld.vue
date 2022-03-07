@@ -126,6 +126,8 @@ export default {
     return {
       init,
       account,
+      currentGift,
+      getGiftLoading,
       getAcc,
       sendGift,
       checkGift,
