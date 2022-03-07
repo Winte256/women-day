@@ -14,7 +14,11 @@
       дарим их Вам.
     </p>
 
-    <div class="slider"></div>
+    <div class="sliderItemsBox">
+      <div class="sliderItemsWrap">
+        <sliderItems />
+      </div>
+    </div>
 
     <p class="home__text text">
       Нажмите на кнопку Получить NFT <br />
@@ -59,6 +63,7 @@ import CommonButton from '@/components/CommonButton.vue';
 // import BaseIconSvg from '@/components/BaseIconSvg.vue';
 // import HeartIcon from '@/components/SvgIcons/HeartIcon.vue';
 import ContactsBox from '@/components/ContactsBox.vue';
+import SliderItems from '@/components/SliderItems.vue';
 import { ref } from 'vue';
 import { useToast } from 'vue-toastification';
 import { useRouter } from 'vue-router';
@@ -74,6 +79,7 @@ export default {
     // BaseIconSvg,
     // HeartIcon,
     ContactsBox,
+    SliderItems,
   },
 
   setup() {
@@ -192,5 +198,35 @@ export default {
 .buttonsBox {
   display: grid;
   grid-row-gap: 16px;
+}
+
+.sliderItemsBox {
+  margin-bottom: 24px;
+  width: 100%;
+  max-width: 320px;
+  overflow-y: auto;
+  padding-bottom: 15px;
+  scrollbar-width: thin;
+  scrollbar-color: $colorAccent #fff;
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $colorAccent;
+    border: 2px solid $colorAccent;
+    border-radius: 6px;
+  }
+}
+
+.sliderItemsWrap {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 8px;
 }
 </style>
