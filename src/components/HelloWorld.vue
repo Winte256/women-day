@@ -1,15 +1,24 @@
 <template>
   <div class="hello">
-    {{ test }}
-    <button @click="firstOnClick">test1</button>
-    <button @click="secondOnClick">test2</button>
-    <button @click="thirdOnClick">test3</button>
+    init: {{ init }}
+    <br />
+    account: {{ account }}
+    <br />
+    currentGift: {{ currentGift }}
+    <br />
+
+    <button @click="getAcc">connect</button>
+
+    <button v-show="!getGiftLoading" @click="sendGift">get gift</button>
+    <span v-show="getGiftLoading">Loading</span>
+    <button @click="checkGift">check gift</button>
   </div>
 </template>
 
 <script>
 import { ref } from '@vue/reactivity';
 import detectEthereumProvider from '@metamask/detect-provider';
+import { onMounted } from 'vue';
 
 export default {
   name: 'HelloWorld',
@@ -17,32 +26,107 @@ export default {
     msg: String,
   },
   setup() {
-    const test = ref('');
+    const init = ref('');
+    const account = ref('');
+    const currentGift = ref('');
+    const getGiftLoading = ref('');
+    let initedWeb3;
+    let contract;
 
-    const firstOnClick = async () => {
-      const provider = await detectEthereumProvider();
+    onMounted(() => {
+      try {
+        initedWeb3 = new window.Web3(new window.Web3.providers.HttpProvider('https://data-seed-prebsc-2-s2.binance.org:8545/'));
+      } catch (error) {
+        console.error(error);
+      }
+
+      contract = new initedWeb3.eth.Contract(
+        JSON.parse('[{"inputs": [], "name": "gift", "outputs": [], "stateMutability": "nonpayable", "type": "function"}, { "inputs": [{"internalType": "address", "name": "addr", "type": "address"}], "name": "getNumberGift", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "stateMutability": "view", "type": "function"}]'),
+        '0x4a812e01F64c0480c3373E3Ad8d9De82aEbC4AE9',
+      );
+
+      console.log(contract.methods);
+    });
+
+    const getProvider = detectEthereumProvider;
+
+    const getAcc = async () => {
+      const provider = await getProvider();
 
       if (provider) {
-        // From now on, this should always be true:
-        // provider === window.ethereum
-        test.value = provider.isMetaMask;
+        init.value = provider.isMetaMask;
       } else {
-        test.value = 'Please install MetaMask!';
+        init.value = 'Please install MetaMask!';
       }
+
+      [account.value] = await provider.request({ method: 'eth_requestAccounts' });
     };
-    const secondOnClick = (e) => {
-      e.preventDefault();
+
+    const checkGift = async () => {
+      const provider = await getProvider();
+
+      const data2 = contract.methods.getNumberGift(account.value).encodeABI();
+      console.log('data2', data2);
+
+      const params2 = [
+        {
+        // from: account.value,
+          to: '0x398896F15B98CD281a6A11ec73872A7447Bb1559',
+          // gas: '0x76c0', // 30400
+          // gasPrice: '0x9184e72a000', // 10000000000000
+          // value: '0x9184e72a', // 2441406250
+          data: data2,
+        },
+      ];
+
+      provider
+        .request({
+          method: 'eth_call',
+          params: params2,
+        }).then((result) => {
+          currentGift.value = result;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     };
-    const thirdOnClick = (e) => {
-      e.preventDefault();
-      test.value += 1;
+    const sendGift = async () => {
+      const provider = await getProvider();
+      const data = contract.methods.gift().encodeABI();
+      const params = [
+        {
+          from: account.value,
+          to: '0x398896F15B98CD281a6A11ec73872A7447Bb1559',
+          // gas: '0x76c0', // 30400
+          // gasPrice: '0x9184e72a000', // 10000000000000
+          // value: '0x9184e72a', // 2441406250
+          data,
+        },
+      ];
+
+      getGiftLoading.value = true;
+
+      provider
+        .request({
+          method: 'eth_sendTransaction',
+          params,
+        })
+        .then((result) => {
+          getGiftLoading.value = false;
+          console.log('send:', result);
+        })
+        .catch((error) => {
+          getGiftLoading.value = false;
+          console.log(error);
+        });
     };
 
     return {
-      test,
-      firstOnClick,
-      secondOnClick,
-      thirdOnClick,
+      init,
+      account,
+      getAcc,
+      sendGift,
+      checkGift,
     };
   },
 };
