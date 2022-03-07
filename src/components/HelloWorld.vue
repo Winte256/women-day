@@ -33,6 +33,8 @@ export default {
     let initedWeb3;
     let contract;
 
+    const contractAddress = '0x4a812e01F64c0480c3373E3Ad8d9De82aEbC4AE9';
+
     onMounted(() => {
       try {
         initedWeb3 = new window.Web3(new window.Web3.providers.HttpProvider('https://data-seed-prebsc-2-s2.binance.org:8545/'));
@@ -42,7 +44,7 @@ export default {
 
       contract = new initedWeb3.eth.Contract(
         JSON.parse('[{"inputs": [], "name": "gift", "outputs": [], "stateMutability": "nonpayable", "type": "function"}, { "inputs": [{"internalType": "address", "name": "addr", "type": "address"}], "name": "getNumberGift", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "stateMutability": "view", "type": "function"}]'),
-        '0x4a812e01F64c0480c3373E3Ad8d9De82aEbC4AE9',
+        contractAddress,
       );
 
       console.log(contract.methods);
