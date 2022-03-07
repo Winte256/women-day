@@ -21,7 +21,7 @@ export default {
     isSmall: Boolean,
     text: {
       type: String,
-      required: true,
+      required: false,
     },
   },
 };
