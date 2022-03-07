@@ -40,7 +40,6 @@ export const getAcc = async () => {
 
     return accounts[0];
   } catch (error) {
-    toast.error('Что то пошло не так при попытке получить адрес');
     return null;
   }
 };
