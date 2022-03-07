@@ -31,11 +31,6 @@ export default {
     CommonButton,
     ContactsBox,
   },
-  setup() {
-    const router = useRouter();
-
-    router.push('/your-gift');
-  }
 
 };
 </script>
