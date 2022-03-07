@@ -33,7 +33,7 @@ export default {
     let initedWeb3;
     let contract;
 
-    const contractAddress = '0x4a812e01F64c0480c3373E3Ad8d9De82aEbC4AE9';
+    const contractAddress = '0x398896F15B98CD281a6A11ec73872A7447Bb1559';
 
     onMounted(() => {
       try {
@@ -73,7 +73,7 @@ export default {
       const params2 = [
         {
         // from: account.value,
-          to: '0x398896F15B98CD281a6A11ec73872A7447Bb1559',
+          to: contractAddress,
           // gas: '0x76c0', // 30400
           // gasPrice: '0x9184e72a000', // 10000000000000
           // value: '0x9184e72a', // 2441406250
@@ -98,7 +98,7 @@ export default {
       const params = [
         {
           from: account.value,
-          to: '0x398896F15B98CD281a6A11ec73872A7447Bb1559',
+          to: contractAddress,
           // gas: '0x76c0', // 30400
           // gasPrice: '0x9184e72a000', // 10000000000000
           // value: '0x9184e72a', // 2441406250
