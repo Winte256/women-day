@@ -1,9 +1,8 @@
 <template>
   <div class="yourGift">
-    <div v-if="awaitGift">loading...</div>
-
     <the-title class="home__title"> Ваш подарок </the-title>
-    <div class="imageBox">
+    <div v-if="awaitGift">loading...</div>
+    <div class="imageBox" v-else-if="+giftN > 0">
       <img
         class="image"
         :src="`https://oton.org/nft/drop_8_march/gift${giftN}.gif?123`"
