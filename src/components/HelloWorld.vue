@@ -17,27 +17,7 @@ export default {
     msg: String,
   },
   setup() {
-    const test = ref(0);
-    const handleEthereum = () => {
-      const { ethereum } = window;
-      if (ethereum && ethereum.isMetaMask) {
-        console.log('Ethereum successfully detected!');
-        // Access the decentralized web!
-      } else {
-        console.log('Please install MetaMask!');
-      }
-    };
-    if (window.ethereum) {
-      handleEthereum();
-    } else {
-      window.addEventListener('ethereum#initialized', handleEthereum, {
-        once: true,
-      });
-
-      // If the event is not dispatched by the end of the timeout,
-      // the user probably doesn't have MetaMask installed.
-      setTimeout(handleEthereum, 3000); // 3 seconds
-    }
+    const test = ref('');
 
     const firstOnClick = async () => {
       const provider = await detectEthereumProvider();
@@ -45,9 +25,9 @@ export default {
       if (provider) {
         // From now on, this should always be true:
         // provider === window.ethereum
-        console.info(provider); // initialize your app
+        test.value = provider.isMetaMask;
       } else {
-        console.log('Please install MetaMask!');
+        test.value = 'Please install MetaMask!';
       }
     };
     const secondOnClick = (e) => {
