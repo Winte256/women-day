@@ -1,0 +1,147 @@
+$colorFiller = #ffffff;
+$colorSecond = #f2f3f7;
+$colorLink = #5d679c;
+$colorFontBase = #1c1b1b;
+$colorDanger = #e82626;
+$colorWarning = #ffdb4d;
+$colorSuccess = #2aa414;
+$colorPrimary = #425df3;
+$mediaSizes = {
+  phoneS: 374px,
+  phone: 480px,
+  tablet: 799px,
+  desktop: 992px,
+  large: 1026px,
+  extraLarge: 1280px,
+  giant: 1600px
+};
+
+getMedia(fromSize, toSize = false) {
+  if (toSize) {
+    @media (min-width: fromSize) and (max-width: toSize) {
+      {block};
+    }
+  } else {
+    @media (min-width: fromSize) {
+      {block};
+    }
+  }
+}
+
+mediaPhone() {
+  +getMedia($mediaSizes.phone) {
+    {block};
+  }
+}
+
+mediaPhoneS() {
+  +getMedia($mediaSizes.phoneS) {
+    {block};
+  }
+}
+
+mediaTablet() {
+  +getMedia($mediaSizes.tablet) {
+    {block};
+  }
+}
+
+mediaDesktop() {
+  +getMedia($mediaSizes.desktop) {
+    {block};
+  }
+}
+
+mediaLarge() {
+  +getMedia($mediaSizes.large) {
+    {block};
+  }
+}
+
+mediaExtraLarge() {
+  +getMedia($mediaSizes.extraLarge) {
+    {block};
+  }
+}
+
+mediaGiant() {
+  +getMedia($mediaSizes.giant) {
+    {block};
+  }
+}
+
+$fontSizes = {
+  desktop: {
+    h1: 48px,
+    h2: 18px,
+    h3: 16px,
+    text: 14px,
+    small: 12px,
+    subtitle: 12px,
+    button: 18px
+  },
+  mobile: {
+    h1: 28px,
+    h2: 14px,
+    h3: 14px,
+    text: 12px,
+    small: 12px,
+    subtitle: 12px,
+    button: 18px
+  }
+};
+
+getFont(name = 'text') {
+  font-size: $fontSizes.mobile[name];
+
+  +mediaTablet() {
+    font-size: $fontSizes.desktop[name];
+  }
+}
+
+getFontH1() {
+  getFont('h1');
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+getFontH2() {
+  getFont('h2');
+  font-weight: 700;
+  margin: 0;
+}
+
+getFontH3() {
+  getFont('h3');
+  font-weight: 700;
+  margin: 0;
+}
+
+getFontText() {
+  getFont('text');
+}
+
+getFontSmall() {
+  getFont('small');
+}
+
+getFontSubtitle() {
+  getFont('subtitle');
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.77px;
+}
+
+getFontButton() {
+  getFont('button');
+  font-weight: 700;
+}
+
+getGridIconEl(gap) {
+  display: grid;
+  align-items: center;
+  grid-auto-flow: column;
+  grid-row: 2;
+  gap: gap;
+}
