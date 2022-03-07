@@ -1,25 +1,28 @@
 <template>
   <div class="base-wrapper">
     <div class="base-container">
-      <route-link to="/" class="logoLink">
-        <img src="@/assets/logo.png" alt="logo" class="logo" />
-      </route-link>
+      <the-header/>
       <router-view />
     </div>
   </div>
 </template>
+
+<script>
+import TheHeader from '@/components/TheHeader.vue';
+
+export default {
+  name: 'App',
+  components: {
+    TheHeader,
+  },
+};
+</script>
 
 <style lang="stylus">
 @import '@/assets/styles/normalize.css';
 @import '@/assets/styles/main.css';
 
 #app {
-}
-
-.logo {
-  display: block;
-  width: 78px;
-  height: 32px;
 }
 
 .base-wrapper {
@@ -30,9 +33,6 @@
 }
 
 .base-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 0 8px;
   margin: auto;
   width: 100%;
