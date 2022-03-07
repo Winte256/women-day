@@ -71,6 +71,7 @@ export default {
     const goToNFTPage = () => {
       loading.value = false;
       toast('NFT уже получена');
+      setAwaitNFTCookie(1);
       router.push('/your-gift');
     };
     const onError = (text = 'Что то пошло не так') => {
@@ -113,7 +114,7 @@ export default {
 
       loading.value = false;
 
-      setAwaitNFTCookie();
+      setAwaitNFTCookie(1);
       router.push('/your-gift');
     };
 
