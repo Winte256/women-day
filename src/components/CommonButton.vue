@@ -30,13 +30,13 @@ export default {
 <style lang="stylus" scoped>
 .button {
   padding: 14px 0;
-  min-width:$width.phoneXs.buttonText;
+  min-width: $width.phoneXs.buttonText;
   border-radius: 16px;
   border: 1px solid transparent;
   getFontButton();
 
-  +mediaPhone() {
-  min-width: $width.phoneS.buttonText;
+  +mediaPhoneS() {
+    min-width: $width.phoneS.buttonText;
   }
 
   +mediaTablet() {

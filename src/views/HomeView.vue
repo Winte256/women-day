@@ -5,27 +5,36 @@
         <heart-icon/>
       </base-icon-svg> -->
       <the-title class="home__title">
-          Искренне поздравляем
-        <template v-slot:yellow >
-          с Международным женским днём
-        </template>
+        Искренне поздравляем
+        <template v-slot:yellow> с Международным женским днём </template>
       </the-title>
     </div>
     <p class="home__text text">
-      Специально к этому празднику мы выпустили коллекцию NFT “Цветы мира”<br/>Мы дарим их Вам.
+      Специально к этому празднику мы выпустили коллекцию NFT “Цветы мира”<br />Мы
+      дарим их Вам.
     </p>
     <p class="home__text text">
-      Нажмите на кнопку Получить NFT <br> и Вам выпадет один из уникальных <br> цветков коллекции
+      Нажмите на кнопку Получить NFT <br />
+      и Вам выпадет один из уникальных <br />
+      цветков коллекции
     </p>
     <div class="home__buttonsBox buttonsBox">
       <common-button :hasBackground="true">Получить NFT </common-button>
       <common-button :isBordered="true">Описание кошелька NFT</common-button>
     </div>
     <p class="home__policies policies">
-      Нажмимая на кнопку, вы даете согласие <br> на обработку персональных данных и <br> соглашаетесь <a class="policiesLink" href="https://oton.org/media/PRIVACY_NOTICE.pdf?b6f7ac2c" target="_blank" rel="noopener noreferrer">с политикой конфиденциальности
-    </a>
+      Нажмимая на кнопку, вы даете согласие <br />
+      на обработку персональных данных и <br />
+      соглашаетесь
+      <a
+        class="policiesLink"
+        href="https://oton.org/media/PRIVACY_NOTICE.pdf?b6f7ac2c"
+        target="_blank"
+        rel="noopener noreferrer"
+        >с политикой конфиденциальности
+      </a>
     </p>
-    <contacts-box/>
+    <contacts-box />
   </div>
 </template>
 
@@ -53,47 +62,51 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   &__title {
-    margin-bottom 16px
+    margin-bottom: 16px;
   }
 
   &__text {
-    margin-bottom 24px
+    margin-bottom: 24px;
+
     &:nth-of-type(2) {
-      margin-bottom 32px
+      margin-bottom: 32px;
     }
   }
 
   &__buttonsBox {
-    margin-bottom 8px
+    margin-bottom: 8px;
   }
 }
 
 .text {
   max-width: $width.phoneXs.buttonText;
-  getFontText()
-  text-align center
+  getFontText();
+  text-align: center;
 
-  +mediaPhone() {
-  min-width: $width.phoneS.buttonText;
+  +mediaPhoneS() {
+    min-width: $width.phoneS.buttonText;
   }
 }
 
 .policies {
-  text-align center
+  margin-bottom: 56px;
+  text-align: center;
   getFontPolicies();
 }
 
 .policiesLink {
   color: $colorAccent;
+
   &:hover {
     color: $colorAccent;
-    opacity 0.6
+    opacity: 0.6;
   }
 }
 
 .buttonsBox {
-  display grid
-  grid-row-gap: 16px
+  display: grid;
+  grid-row-gap: 16px;
 }
 </style>
