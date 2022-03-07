@@ -18,11 +18,11 @@
       и Вам выпадет один из уникальных <br />
       цветков коллекции
     </p>
+
     <div class="home__buttonsBox buttonsBox">
       <common-button :hasBackground="true" @click="getNFT">{{
         loading ? "Загрузка" : "Получить NFT"
       }}</common-button>
-      <common-button :isBordered="true">Описание кошелька NFT</common-button>
     </div>
     <p class="home__policies policies">
       Нажмимая на кнопку, вы даете согласие <br />
@@ -35,7 +35,17 @@
         rel="noopener noreferrer"
         >с политикой конфиденциальности
       </a>
+      <br />
+      <br />
+      Для получения NFT вам надо будет авторизовать кошелёк и оплатить комиссию
+      за транзакцию получения NFT со смарт-контракта. Комиссия составит не
+      больше 10-15 центов.
+      <br />
+      <br />
+      После выполнения транзакции, надо будет добавить NFT в кошелёк вручную.
+      Инструкция будет на следующием шаге.
     </p>
+
     <contacts-box />
   </div>
 </template>
@@ -163,6 +173,7 @@ export default {
 .policies {
   margin-bottom: 56px;
   text-align: center;
+  max-width: 300px;
   getFontPolicies();
 }
 
