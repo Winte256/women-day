@@ -1,16 +1,12 @@
 <template>
   <div class="yourGift">
     <div v-if="awaitGift">loading...</div>
-    <img
-      :src="`https://oton.org/nft/drop_8_march/gift${giftN}.gif?123`"
-      alt=""
-      class="giftImg"
-    />
+
     <the-title class="home__title"> Ваш подарок </the-title>
     <div class="imageBox">
       <img
         class="image"
-        src="https://oton.org/nft/drop_8_march/gift1.gif?1"
+        :src="`https://oton.org/nft/drop_8_march/gift${giftN}.gif?123`"
         alt="nft flower"
       />
     </div>
