@@ -30,11 +30,14 @@ export default {
 <style lang="stylus" scoped>
 .button {
   padding: 14px 0;
-  min-width: 311px;
+  min-width:$width.phoneXs.buttonText;
   border-radius: 16px;
   border: 1px solid transparent;
   getFontButton();
-  line-height: 28px;
+
+  +mediaPhone() {
+  min-width: $width.phoneS.buttonText;
+  }
 
   +mediaTablet() {
     min-width: 248px;
@@ -45,11 +48,12 @@ export default {
   }
 
   &_bordered {
-    border-color: $colorBgBtn;
+    border-color: $colorAccent;
+    color: $colorAccent;
   }
 
   &_backgrounded {
-    background-color: $colorBgBtn;
+    background-color: $colorAccent;
     color: $colorBtn;
   }
 }

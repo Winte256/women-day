@@ -50,6 +50,10 @@ a:hover {
   text-decoration: none;
 }
 
+p {
+  margin: 0;
+}
+
 button {
   padding: 0;
   background-color: transparent;

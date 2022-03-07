@@ -1,11 +1,19 @@
+$colorFiller = #fff;
 $colorBg = radial-gradient(135.69% 54.68% at 126.27% 45.32%, #BF36FF 0%, #170928 100%);
 $colorBtn = #170A29;
-$colorBgBtn = #DBF851;
+$colorAccent = #DBF851;
 
-
+$width = {
+  phoneXs: {
+    buttonText: 300px,
+  },
+  phoneS: {
+    buttonText: 300px,
+  }
+}
 
 $mediaSizes = {
-  phoneS: 374px,
+  phoneS: 375px,
   phone: 480px,
   tablet: 799px,
   desktop: 992px,
@@ -70,30 +78,58 @@ mediaGiant() {
 
 $fontSizes = {
   desktop: {
-    h1: 48px,
-    h2: 18px,
-    h3: 16px,
-    text: 14px,
-    small: 12px,
-    subtitle: 12px,
-    button: 18px
+    h1: {
+      fontSize: 28px,
+      lineHeight: 32px,
+      },
+    text: {
+      fontSize: 14px,
+      lineHeight: 20px,
+      },
+    policies: {
+      fontSize: 12px,
+      lineHeight: 16px,
+      },
+    button: {
+      fontSize: 18px,
+      lineHeight: 28px,
+      },
+    contact: {
+      fontSize: 16px,
+      lineHeight: 32px,
+      }
   },
   mobile: {
-    h1: 28px,
-    h2: 14px,
-    h3: 14px,
-    text: 12px,
-    small: 12px,
-    subtitle: 12px,
-    button: 18px
+    h1: {
+      fontSize: 28px,
+      lineHeight: 32px,
+      },
+    text: {
+      fontSize: 14px,
+      lineHeight: 20px,
+      },
+    policies: {
+      fontSize: 12px,
+      lineHeight: 16px,
+      },
+    button: {
+      fontSize: 18px,
+      lineHeight: 28px,
+      },
+    contact: {
+      fontSize: 16px,
+      lineHeight: 32px,
+      }
   }
 };
 
 getFont(name = 'text') {
-  font-size: $fontSizes.mobile[name];
+  font-size: $fontSizes.mobile[name].fontSize;
+  line-height: $fontSizes.mobile[name].lineHeight;
 
   +mediaTablet() {
-    font-size: $fontSizes.desktop[name];
+    font-size: $fontSizes.desktop[name].fontSize;
+    line-height: $fontSizes.desktop[name].lineHeight;
   }
 }
 
@@ -102,31 +138,16 @@ getFontH1() {
   font-weight: 600;
 }
 
-getFontH2() {
-  getFont('h2');
-  font-weight: 700;
-  margin: 0;
-}
-
-getFontH3() {
-  getFont('h3');
-  font-weight: 700;
-  margin: 0;
-}
-
 getFontText() {
   getFont('text');
+  font-family "Montserrat", sans-serif
+  font-weight: 400;
 }
 
-getFontSmall() {
-  getFont('small');
-}
-
-getFontSubtitle() {
-  getFont('subtitle');
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.77px;
+getFontPolicies() {
+  getFont('policies');
+  font-family "Montserrat", sans-serif
+  font-weight: 300;
 }
 
 getFontButton() {
@@ -134,10 +155,7 @@ getFontButton() {
   font-weight: 700;
 }
 
-getGridIconEl(gap) {
-  display: grid;
-  align-items: center;
-  grid-auto-flow: column;
-  grid-row: 2;
-  gap: gap;
+getFontContact() {
+  getFont('contact');
+  font-weight: 300;
 }

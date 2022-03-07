@@ -23,6 +23,7 @@ export default {
 @import '@/assets/styles/main.css';
 
 #app {
+  color: $colorFiller;
 }
 
 .base-wrapper {
