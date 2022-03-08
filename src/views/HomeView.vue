@@ -77,7 +77,7 @@ export default {
 
     const goToNFTPage = () => {
       loading.value = false;
-      toast('NFT уже получена');
+      toast(t('NFT уже получена'));
       setAwaitNFTCookie(1);
       router.push(`/${locale.value}/your-gift`);
     };
