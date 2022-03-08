@@ -1,6 +1,7 @@
 import detectEthereumProvider from '@metamask/detect-provider';
 import { useToast } from 'vue-toastification';
 import Cookies from 'js-cookie';
+import { useI18n } from 'vue-i18n';
 import { contractAddress, smartData } from './constants';
 
 export const getContract = () => {
@@ -29,9 +30,10 @@ export const getContract = () => {
 export const getAcc = async () => {
   const toast = useToast();
   const provider = await detectEthereumProvider();
+  const { t } = useI18n({ useScope: 'global' });
 
   if (!provider || !provider.isMetaMask) {
-    toast.error('Установите расширение MetaMask и попробуйте снова!');
+    toast.error(t('Установите расширение MetaMask и попробуйте снова!'));
     return undefined;
   }
 
@@ -48,9 +50,9 @@ export const sendGift = async () => {
   const toast = useToast();
   const contract = getContract();
   const account = await getAcc();
-
+  const { t } = useI18n({ useScope: 'global' });
   if (!account) {
-    toast.error('Что то пошло не так при попытке получить адрес');
+    toast.error(t('Что то пошло не так при попытке получить адрес'));
     return null;
   }
 
@@ -74,10 +76,10 @@ export const sendGift = async () => {
 export const checkGift = async () => {
   const toast = useToast();
   const contract = getContract();
-
+  const { t } = useI18n({ useScope: 'global' });
   const account = await getAcc();
   if (!account) {
-    toast.error('Что то пошло не так при попытке получить адрес');
+    toast.error(t('Что то пошло не так при попытке получить адрес'));
     return null;
   }
 
@@ -102,14 +104,14 @@ export const checkGift = async () => {
     });
 
     if (typeof currentGift !== 'string') {
-      toast.error('Ошибка типа при проверке NFT');
+      toast.error(t('Ошибка типа при проверке NFT'));
       return null;
     }
 
     return currentGift[currentGift.length - 1];
   } catch (error) {
     console.error(error);
-    toast.error('Неизвестная ошибка при проверке NFT');
+    toast.error(t('Неизвестная ошибка при проверке NFT'));
     return null;
   }
 };

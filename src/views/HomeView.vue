@@ -73,7 +73,7 @@ export default {
     const loading = ref(false);
     const toast = useToast();
     const router = useRouter();
-    const { locale } = useI18n({ useScope: 'global' });
+    const { locale, t } = useI18n({ useScope: 'global' });
 
     const goToNFTPage = () => {
       loading.value = false;
@@ -83,7 +83,7 @@ export default {
     };
     const onError = (text = 'Что то пошло не так') => {
       loading.value = false;
-      toast.error(text);
+      toast.error(t(text));
     };
 
     const getNFT = async () => {

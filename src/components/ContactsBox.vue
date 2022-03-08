@@ -5,7 +5,7 @@
       v-for="contact in contacts"
       :key="contact.title"
       :links="contact.links"
-      >{{ contact.title }}</contact-item
+      >{{ $t(contact.title) }}</contact-item
     >
   </div>
 </template>
