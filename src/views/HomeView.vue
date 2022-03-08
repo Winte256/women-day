@@ -5,14 +5,16 @@
         <heart-icon/>
       </base-icon-svg> -->
       <the-title class="home__title">
-        Искренне поздравляем
-        <template v-slot:yellow> с Международным женским днём </template>
+        {{ locale === "tr" ? "" : $t("Искренне поздравляем") }}
+        <template v-slot:yellow>
+          {{ $t("с Международным женским днём") }}
+        </template>
       </the-title>
     </div>
-    <p class="home__text text">
-      Специально к этому празднику мы выпустили коллекцию NFT “Цветы мира”<br />Мы
-      дарим их Вам.
-    </p>
+    <p
+      class="home__text text"
+      v-html="$t('Специально к этому празднику мы')"
+    ></p>
 
     <div class="sliderItemsBox">
       <div class="sliderItemsWrap">
@@ -20,37 +22,21 @@
       </div>
     </div>
 
-    <p class="home__text text">
-      Нажмите на кнопку Получить NFT <br />
-      и Вам выпадет один из уникальных <br />
-      цветков коллекции
-    </p>
+    <p
+      class="home__text text"
+      v-html="$t('Нажмите на кнопку Получить NFT')"
+    ></p>
 
     <div class="home__buttonsBox buttonsBox">
       <common-button :hasBackground="true" @click="getNFT">{{
-        loading ? "Загрузка" : "Получить NFT"
+        loading ? $t("Загрузка") : $t("Получить NFT")
       }}</common-button>
     </div>
     <p class="home__policies policies">
-      Нажмимая на кнопку, вы даете согласие <br />
-      на обработку персональных данных и <br />
-      соглашаетесь
-      <a
-        class="policiesLink"
-        href="https://oton.org/media/PRIVACY_NOTICE.pdf?b6f7ac2c"
-        target="_blank"
-        rel="noopener noreferrer"
-        >с политикой конфиденциальности
-      </a>
-      <br />
-      <br />
-      Для получения NFT вам надо будет авторизовать кошелёк и оплатить комиссию
-      за транзакцию получения NFT со смарт-контракта. Комиссия составит не
-      больше 10-15 центов.
-      <br />
-      <br />
-      После выполнения транзакции, надо будет добавить NFT в кошелёк вручную.
-      Инструкция будет на следующием шаге.
+      <span v-html="$t('Нажмимая на кнопку')"></span>
+
+      <br /><br />
+      <span v-html="$t('Для получения NFT')"></span>
     </p>
 
     <contacts-box />
@@ -67,6 +53,7 @@ import SliderItems from '@/components/SliderItems.vue';
 import { ref } from 'vue';
 import { useToast } from 'vue-toastification';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import {
   sendGift, checkGift, setAwaitNFTCookie,
 } from '../utils/metamask';
@@ -86,12 +73,13 @@ export default {
     const loading = ref(false);
     const toast = useToast();
     const router = useRouter();
+    const { locale } = useI18n({ useScope: 'global' });
 
     const goToNFTPage = () => {
       loading.value = false;
       toast('NFT уже получена');
       setAwaitNFTCookie(1);
-      router.push('/your-gift');
+      router.push(`/${locale.value}/your-gift`);
     };
     const onError = (text = 'Что то пошло не так') => {
       loading.value = false;
@@ -129,10 +117,12 @@ export default {
 
       setAwaitNFTCookie(1);
 
-      router.push('/your-gift');
+      router.push(`/${locale.value}/your-gift`);
     };
 
     return {
+      locale,
+
       loading,
       getNFT,
     };

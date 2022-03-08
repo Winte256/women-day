@@ -1,6 +1,6 @@
 <template>
   <div class="yourGift">
-    <the-title class="home__title"> Ваш подарок </the-title>
+    <the-title class="home__title"> {{ $t("Ваш подарок") }} </the-title>
     <div v-if="awaitGift" class="loader">
       <CommonSpinner />
     </div>
@@ -17,28 +17,22 @@
         :hasBackground="true"
         v-if="buttonIsShown"
         @click="hideButton"
-        >Добавить в Metamask</common-button
+        >{{ $t("Добавить в Metamask") }}</common-button
       >
     </div>
 
     <ol class="instructions" v-if="!buttonIsShown">
-      <li class="instructionsItem">Откройте мобильное приложение Метамаск</li>
+      <li class="instructionsItem">{{ $t("instructionsItem1") }}</li>
+      <li class="instructionsItem">{{ $t("instructionsItem2") }}</li>
+      <li class="instructionsItem">{{ $t("instructionsItem3") }}</li>
+      <li class="instructionsItem">{{ $t("instructionsItem4") }}</li>
       <li class="instructionsItem">
-        Убедитесь, что вы находетесь в кошельке с тем адресом, на который
-        получали NFT
+        {{ $t("instructionsItem5", { contractAddress }) }}
       </li>
-      <li class="instructionsItem">
-        Перейдите на вкладку «Невзаимозаменяемые токены»
-      </li>
-      <li class="instructionsItem">
-        Прокрутите экран вниз и нажмите «ДОБАВИТЬ невзаимозаменяемые токены»
-      </li>
-      <li class="instructionsItem">Укажите адрес {{ contractAddress }}</li>
-      <li class="instructionsItem">Укажите Идентификатор {{ giftN }}</li>
-      <li class="instructionsItem">Нажмите «Добавить»</li>
-      <li class="instructionsItem">Дождитесь загрузки изборажения</li>
+      <li class="instructionsItem">{{ $t("instructionsItem6", { giftN }) }}</li>
+      <li class="instructionsItem">{{ $t("instructionsItem7") }}</li>
+      <li class="instructionsItem">{{ $t("instructionsItem8") }}</li>
     </ol>
-
     <contacts-box />
   </div>
 </template>
@@ -51,6 +45,7 @@ import CommonSpinner from '@/components/CommonSpinner.vue';
 
 import { onMounted, onUnmounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import { setAwaitNFTCookie, getAwaitNFTCookie, checkGift } from '../utils/metamask';
 import { contractAddress } from '../utils/constants';
 
@@ -61,11 +56,11 @@ export default {
     CommonButton,
     ContactsBox,
     CommonSpinner,
-
   },
 
   setup() {
     const router = useRouter();
+    const { locale } = useI18n({ useScope: 'global' });
     const buttonIsShown = ref(true);
     const awaitGift = ref(true);
     const giftN = ref('0');
@@ -110,7 +105,7 @@ export default {
 
       if (!currentGift || currentGift === '0') {
         awaitGift.value = false;
-        router.push('/');
+        router.push(`/${locale.value}`);
         return;
       }
 

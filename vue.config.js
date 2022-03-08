@@ -9,4 +9,17 @@ module.exports = defineConfig({
       patterns: [path.resolve(__dirname, './src/assets/styles/*.styl')],
     },
   },
+  chainWebpack: (config) => {
+    config.module
+      .rule('csv')
+      .test(/\.csv$/)
+      .use('csv-loader')
+      .loader('csv-loader')
+      .options({
+        dynamicTyping: false,
+        header: false,
+        skipEmptyLines: true,
+      })
+      .end();
+  },
 });
