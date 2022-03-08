@@ -68,7 +68,7 @@ import { ref } from 'vue';
 import { useToast } from 'vue-toastification';
 import { useRouter } from 'vue-router';
 import {
-  sendGift, checkGift, getAwaitNFTCookie, setAwaitNFTCookie,
+  sendGift, checkGift, setAwaitNFTCookie,
 } from '../utils/metamask';
 
 export default {
@@ -103,13 +103,7 @@ export default {
         return;
       }
 
-      const gifted = getAwaitNFTCookie();
       loading.value = true;
-
-      if (gifted === '1') {
-        goToNFTPage();
-        return;
-      }
 
       const currentGift = await checkGift();
 
@@ -134,12 +128,12 @@ export default {
       loading.value = false;
 
       setAwaitNFTCookie(1);
+
       router.push('/your-gift');
     };
 
     return {
       loading,
-
       getNFT,
     };
   },

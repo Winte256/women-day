@@ -115,9 +115,7 @@ export const checkGift = async () => {
 };
 
 export const setAwaitNFTCookie = (value) => {
-  Cookies.set('awaitNFT', value);
+  Cookies.set('awaitnft', value, { expires: 1 });
 };
 
-export const getAwaitNFTCookie = () => {
-  Cookies.get('awaitNFT');
-};
+export const getAwaitNFTCookie = () => Cookies.get('awaitnft');

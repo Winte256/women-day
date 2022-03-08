@@ -49,7 +49,7 @@ import CommonButton from '@/components/CommonButton.vue';
 import ContactsBox from '@/components/ContactsBox.vue';
 import CommonSpinner from '@/components/CommonSpinner.vue';
 
-import { onMounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { setAwaitNFTCookie, getAwaitNFTCookie, checkGift } from '../utils/metamask';
 import { contractAddress } from '../utils/constants';
@@ -65,13 +65,11 @@ export default {
   },
 
   setup() {
-    const buttonIsShown = ref(true);
-
     const router = useRouter();
-
+    const buttonIsShown = ref(true);
     const awaitGift = ref(true);
-
     const giftN = ref('0');
+    let timeoutId = 0;
 
     const hideButton = () => {
       buttonIsShown.value = false;
@@ -87,7 +85,7 @@ export default {
 
       const currentGift = await checkGift();
       if (currentGift === '0') {
-        setTimeout(checkAwait, 500);
+        timeoutId = setTimeout(checkAwait, 500);
         return;
       }
 
@@ -95,6 +93,10 @@ export default {
       giftN.value = currentGift;
       awaitGift.value = false;
     };
+
+    onUnmounted(() => {
+      window.clearTimeout(timeoutId);
+    });
 
     onMounted(async () => {
       const awaitStatus = getAwaitNFTCookie();
